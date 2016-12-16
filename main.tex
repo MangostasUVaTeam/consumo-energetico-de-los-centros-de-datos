@@ -1,5 +1,116 @@
-\documentclass{article}
+\documentclass[10pt]{article}
+
 \usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+\usepackage[hidelinks]{hyperref}
+
+\usepackage[a4paper, lmargin=0.14\paperwidth, rmargin=0.14\paperwidth, tmargin=0.1111\paperheight, bmargin=0.1111\paperheight]{geometry}
+
+
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+
+\usepackage{fancyhdr} % Headers and footers
+\pagestyle{fancy} % All pages have headers and footers
+\fancyhead{} % Blank out the default header
+\fancyfoot{} % Blank out the default footer
+\fancyhead[C]{ \today \ $\bullet$ PyS $\bullet$ Consumo Energético de los Grandes Centros de Computación } % Custom header text
+\fancyfoot[RO] {\thepage}
+
+
+
 \begin{document}
-(Type your content here.)
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+	\begin{titlepage}
+      \centering
+          %\includegraphics[width=0.15\textwidth]{example-image-1x1}\par\vspace{1cm}
+          {\scshape\LARGE Universidad de Valladolid \par}
+          \vspace{1cm}
+          {\scshape\Large Profesión y Sociedad.\par}
+          \vspace{1.5cm}
+          {\huge\bfseries Consumo Energético de los Grandes Centros de Computación \par}
+          \vspace{2cm}
+          {\large
+          \textsc{Amigo Alonso, Alberto}\\[2mm] % Your name
+          \textsc{Delgado Álvarez, Sergio}\\[2mm] % Your name
+          \textsc{García Prado, Sergio}\\[2mm] % Your name
+          \textsc{Iglesias Cortijo, David}\\[2mm] % Your name
+
+          \vspace{-5mm}
+          }
+
+          \vfill
+		% Bottom of the page
+		{\large \today\par}
+	\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+	\clearpage
+	\tableofcontents
+
+%----------------------------------------------------------------------------------------
+%	TEXT
+%----------------------------------------------------------------------------------------
+
+	\clearpage
+    \section{Introducción}		
+    	
+        \paragraph{}
+    
+    
+    \section{Análisis sobre el consumo}
+    
+    	\paragraph{}
+           
+
+    \section{Impacto medioambiental}
+    	
+        \paragraph{}
+    
+    
+    \section{Estrategias de optimización}
+    
+    	\paragraph{}
+    
+    \section{Beneficios} 
+    
+    	\paragraph{}
+    
+    \section{Conclusiones}
+    
+    	\paragraph{}
+%----------------------------------------------------------------------------------------
+%	Bibliographic references
+%----------------------------------------------------------------------------------------
+	\clearpage 	
+    \begin{thebibliography}{9}
+        
+        \bibitem{energy-star:guide}
+  		Enegy Star: 12 Way save \url{https://www.energystar.gov/products/low_carbon_it_campaign/12_ways_save_energy_data_center}
+        
+        \bibitem{intel:guide}
+        Intel: Reducing Data Center Energy Consumption \url{https://www.irif.fr/~yunes/divers/papers/green/CERN_r04.pdf}
+        
+        \bibitem{google:ia}
+        Google: Blog \url{https://googleblog.blogspot.com.es/2014/05/better-data-centers-through-machine.html}
+        
+        \bibitem{google:deep-learning}
+        Deepmind \url{https://deepmind.com/blog/deepmind-ai-reduces-google-data-centre-cooling-bill-40/}
+        
+        \bibitem{nrdc:guide}
+        NRDC: Data Center Eficiency Assessment \url{https://www.nrdc.org/sites/default/files/data-center-efficiency-assessment-IP.pdf}
+        
+	\end{thebibliography}
+  		
 \end{document}
+
+
+
