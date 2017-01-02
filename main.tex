@@ -129,7 +129,7 @@
 			\begin{figure}[htpb!]
 				\begin{center}
 					\includegraphics[width=0.75\textwidth]{virtualization}
-					\caption{Virtualización de servidores.\cite{exelos:virtualization}}
+					\caption{Virtualización de Servidores.\cite{exelos:virtualization}}
 					\label{image:virtualization}
 				\end{center}
 			\end{figure}
@@ -145,18 +145,44 @@
 			Por tanto, una correcta gestión del número de servidores activos en el centro de datos, según las necesidades requeridas en cada momento puede reducir el consumo energético global en gran medida. Para la implementación de la automatización de esta estrategia se utilizan umbrales de utilización del sistema a partir de los cuales encender o apagar las máquinas.
 
 
-		\subsection{Refrigeración}
+		\subsection{Gestión de temperatura}
 
 			\paragraph{}
+			La refrigeración de los grandes centros de datos es un tema que genera mucha controversia, debido a las distintas opiniones acerca de la temperatura óptima que debe tener la sala en la cual se localizan los racks de servidores. Las distintas propuestas se pueden englobar dentro del rango de 15 a 30 grados Celsius. A pesar de ello, algo en lo que si coinciden es en el conjunto de estrategias para lograr dicho fin:
 
+			\subsubsection{Flujos de aire}
 
-		\subsection{Otras Estrategias}
+	 			\paragraph{}
+				La idea principal de estra estrategia es la de crear flujos de ventilación de diferentes temperaturas con el fin de que el aire a temperaturas más bajas sea dirigido hacia los servidores mientras que los flujos con altas temperaturas sean dirigidos hacia los puntos de entrada en del sistema de refrigeración. La estrategia habitual es la de direcciónar las corrientes de aire frío de la parte inferior de la sala hacia la superior, tal y como se ilustra en la figura \ref{image:refrigeration}. Esto es así porque el aire caliente tiene un menor grado de densidad, lo cual hace que su peso sea menor y se localice en la parte superior de la sala. Por tanto, se aprovecha este fenomeno natural para generar un flujo de aire frío desde el inferior hacia la zona superior de la sala que atraviesa los racks de servidores reduciendo la temperatura de los mismos.
 
-			\paragraph{}
+				\begin{figure}[htpb!]
+					\begin{center}
+						\includegraphics[width=0.75\textwidth]{refrigeration}
+						\caption{Refrigeración de Servidores.\cite{cisco:guide}}
+						\label{image:refrigeration}
+					\end{center}
+				\end{figure}
+
+				\paragraph{}
+				Una estrategia complementaria a lo citado en el apartado anterior es el control automático de la velocidad de los ventiladores de los racks de servidores, lo cual facilita el aprovechamiento de los flujos de aire según las necesidades de cada zona concreta de la sala.
+
+			\subsubsection{Refrigeración líquida}
+
+				\paragraph{}
+				También existen estrategias de refrigeración de servidores mediante circuitos de fluidos a bajas temperaturas en el interior de los racks de servidores. A pesar de ello estas se encuentran en detrimento, debido al riesgo que generan debido a fugas o la dificultad de adaptar la temperatura según zonas específicas
+
+			\subsubsection{Deslocalización hacia zonas frías}
+
+				\paragraph{}
+				Otra de las soluciones que se están adoptando para reducir los costes energéticos, en cuanto a la gestión de temperatura, consiste en la deslocalización de los grandes centros de datos hacia zonas cuya condición climática facilite el mantenimiento de temperaturas óptimas. Los destinos escogidos por las organizaciones propietarias son zonas alejadas del ecuador terrestre como zonas de montaña. Tal y como se habló en la sección \ref{sec:impacto}, esto tiene un impacto medioambiental sobre las zonas escogidas pero permite una reducción sobre los costes destinados a la reducción de temperatura de los servidores.
 
 		\subsection{Optimización basada en Inteligencia Artificial}
 
 			\paragraph{}
+			Una nueva estrategia de reducción de costes originados por consumo energético en los grandes centros de computación es la optimización mediante inteligencia artificial. Esta es una idea troncal al resto de estrategias vistas anteriormente. El motivo de ello es que se basa en buscar el punto óptimo de gestión de las mismas. En el pasado también se utilizaban técnicas similares para mejorar la productividad pero se caracterizaban por estar basadas en conjuntos de reglas o heurísticas definidas por el ser humano.
+
+			\paragraph{}
+			Lo novedoso de las técnicas que cada vez más, se están empezando a utilizar en un amplio rango de disciplinas en que basan la optimización en un concepto denominado \textbf{aprendizaje profundo}, cuya principal idea es la de tratar de aproximarse lo máximo posible a un valor óptimo de una función de coste, a partir de una representación interna del problema en forma de red de \say{neuronas} cuyos valores dirigen la entrada (estado actual del sistema desde el punto de vista del consumo energético) hacia otro valor (conjunto de acciones a realizar como encender o apagar servidores, aumentar la potencia de refrigeración, etc.) idealmente óptimo aprendido previamente.
 
 
   \section{Beneficios}
