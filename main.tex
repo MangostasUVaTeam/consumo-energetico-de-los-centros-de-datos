@@ -3,6 +3,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 
+
+\usepackage{dirtytalk}
+
 \usepackage[hidelinks]{hyperref}
 
 \usepackage[a4paper, lmargin=0.14\paperwidth, rmargin=0.14\paperwidth, tmargin=0.1111\paperheight, bmargin=0.1111\paperheight]{geometry}
@@ -108,19 +111,41 @@
 
 
 		\paragraph{}
-		Debido a estos factores, las organizaciones encargadas de gestionar este tipo de centros, cada vez más, dedican un alto grado de esfuerzo para tratar de reducir su consumo energético. Existen numerosos documentos emitidos por distintas entidades de prestigio que tratan de proponer un con junto de estrategías o puntos de revisión del sistema para tratar de reducir su consumo energético.
-
+		Debido a estos factores, las organizaciones encargadas de gestionar este tipo de centros, cada vez más, dedican un alto grado de esfuerzo para tratar de reducir su consumo energético. Existen numerosos documentos emitidos por distintas entidades de prestigio que tratan de proponer un conjunto de estrategías o puntos de revisión en los sistemas para tratar de reducir su consumo energético. Algunos de los más importantes son los ofrecidos por: \emph{EnergyStar}\cite{energy-star:guide}, \emph{Intel}\cite{intel:guide}, \emph{NRDC}\cite{nrdc:guide}, \emph{Energy}\cite{energy:guide}, \emph{Google}\cite{google:case_study}, \emph{Cisco}\cite{cisco:guide} o  \emph{IBM}\cite{ibm:guide} aunque existe una extensa cantidad de información al respecto.
 
 		\paragraph{}
-		En este documento vamos a dividir estas técnicas según el objetivo al que van dirigidas:
+		En esta sección se ha tratado de combinar el conjunto de técnicas recomendadas por los documentos citados anteriormente tratando de conseguir abarcar el mayor número de puntos posibles evitando la repetición de información. A continuación se exponen dichas técnicas según el objetivo para el que van dirigidas:
+
+
+		\subsection{Virtualización}
+
+			\paragraph{}
+			Uno de los puntos en común en todas las guías citadas es su enfasis en la \textbf{virtualización}. Esta técnica se refiere a la capacidad de abstraer la visión de un conjunto de servidores de manera que desde el exterior sean vistos como una única máquina. A pesar del coste computacional destinado a dicho fin, con esto se consiguen reduciones en el consumo energético debido al aumento del uso de las máquinas.
+
+			\paragraph{}
+			Típicamente se asignaba un servidor físico por aplicación o sistema, con lo cuál, mientras no se utilizara dicho sistema, el servidor permanecía inactivo consumiendo energía, por lo que la productividad energética de los mismos no era la óptima. Con las estrategias actuales de virtualización se pretende tratar todas las aplicaciones que se ejecutan en el centro de datos como procesos de una única máquina virtualizada. Esto se ilustra gráficamente en la figura \ref{image:virtualization}. Con lo cuál, se consigue que los servidores aprovechen mucho más sus capacidades de cómputo, ya que pueden realizar operaciones relativas a cualquiera de las aplicaciones. Por tanto, la complejidad que gana el centro de datos debido a esta opción es altamente recompensada con la reducción del consumo energético.
+
+
+			\begin{figure}[htpb!]
+				\begin{center}
+					\includegraphics[width=0.75\textwidth]{virtualization}
+					\caption{Virtualización de servidores.\cite{exelos:virtualization}}
+					\label{image:virtualization}
+				\end{center}
+			\end{figure}
+
+		\subsection{Apagado Automático}
+
+			\paragraph{}
+			Una de las ventajas del uso de estrategias de virtualización es la capacidad de abstracción que se obtiene. Con esto, se consigue hacer independiente la capa de software de la de hardware. Por tanto, se añade la posibilidad de poder añadir o eliminar servidores físicos al sistema global en tiempo de ejecución, según las necesidades en cada momento. Esta idea se enmarca dentro de un concepto más global denominado \textbf{escalabilidad}:
+
+			\say{La escalabilidad es la propiedad deseable de un sistema, una red o un proceso, que indica su habilidad para reaccionar y adaptarse sin perder calidad, o bien manejar el crecimiento continuo de trabajo de manera fluida, o bien para estar preparado para hacerse más grande sin perder calidad en los servicios ofrecidos}\cite{wikipedia:escalabilidad}.
+
+			\paragraph{}
+			Por tanto, una correcta gestión del número de servidores activos en el centro de datos, según las necesidades requeridas en cada momento puede reducir el consumo energético global en gran medida. Para la implementación de la automatización de esta estrategia se utilizan umbrales de utilización del sistema a partir de los cuales encender o apagar las máquinas.
 
 
 		\subsection{Refrigeración}
-
-			\paragraph{}
-
-
-		\subsection{Estado de Espera}
 
 			\paragraph{}
 
@@ -160,19 +185,12 @@
     Google Blog: Better data centers through machine learning. \newline
 		\url{https://googleblog.blogspot.com.es/2014/05/better-data-centers-through-machine.html}
 
-    \bibitem{google:deep-learning}
-    Deepmind: Deepmind AI reduces Google Data Centre Cooling Bill by 40\%. \newline
-		\url{https://deepmind.com/blog/deepmind-ai-reduces-google-data-centre-cooling-bill-40/}
-
     \bibitem{nrdc:guide}
     NRDC: Data Center Eficiency Assessment. \newline
  		\url{https://www.nrdc.org/sites/default/files/data-center-efficiency-assessment-IP.pdf}
 
 		\bibitem{buildings:guide}
     Buildings: 10 Ways to Save Energy in Your Data Center. \newline \url{http://www.buildings.com/article-details/articleid/6000/title/10-ways-to-save-energy-in-your-data-center}
-
-		\bibitem{forbes:save_energy}
-		Forbes: How To Save Energy In The Data Center With Colocation And Hybrid IT. \newline \url{http://www.forbes.com/sites/centurylink/2015/12/22/how-to-save-energy-in-the-data-center-with-colocation-and-hybrid-it}
 
 		\bibitem{energy:guide}
 		Enegy: Best Practices Guide for Energy-E cient Data Center Design. \newline
@@ -209,6 +227,14 @@
 		\bibitem{cisco:guide}
 		Cisco: Data Center Power and Cooling \newline
 		\url{http://www.cisco.com/c/en/us/solutions/collateral/data-center-virtualization/unified-computing/white_paper_c11-680202.pdf}
+
+		\bibitem{exelos:virtualization}
+		Exelos: Virtualization \newline
+		\url{http://exelos.com/solutions/virtualization/}
+
+		\bibitem{wikipedia:escalabilidad}
+		Wikipedia: Escalabilidad \newline
+		\url{https://es.wikipedia.org/wiki/Escalabilidad}
 
 	\end{thebibliography}
 
