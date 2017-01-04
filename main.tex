@@ -72,13 +72,43 @@
   \section{Análisis sobre el consumo}
   \label{sec:analisis}
   	\paragraph{}
-		Como es bien conocido, el gran problema de los actuales centros de datos y de supercomputación, que viene siendo arrastrado desde el pasado, es la gran cantidad de energía que necesitan para su funcionamiento. Es por ello, que el primer paso en este estudio será analizar de dónde procede esta necesidad energética y cuantificar el consumo medio de un centro de computación.
+	Como es bien conocido, el gran problema de los actuales centros de datos y de supercomputación, que viene siendo arrastrado desde el pasado, es la gran cantidad de energía que necesitan para su funcionamiento. Es por ello, que el primer paso en este estudio será analizar de dónde procede esta necesidad energética y cuantificar el consumo medio de un centro de computación.
 
-    \subsection{Dentro de un centro de computación}
+    \subsection{Dentro de un centro de datos}
 			\paragraph{}
-
+            Como se muestra en la Figura \ref{image:datacenter}, un centro de datos consta básicamente de los siguientes elementos estructurales:
+                        
+            \begin{figure}[htpb!]
+				\begin{center}
+					\includegraphics[width=0.75\textwidth]{pue-comprehensive}
+					\caption{Esquema de un centro de datos.\cite{google:dc-schema}}
+					\label{image:datacenter}
+				\end{center}
+			\end{figure}
+            
+            \begin{enumerate}
+            	\item \textbf{Proveedores de energía:} Estos son los componentes que alimentan a los servidores de cómputo y al resto de elementos del recinto. Esta alimentación se suele dar en forma de corriente alterna y es necesario un \textbf{transformador} para convertirla en corriente continua usable por las máquinas. La energía puede tener varios orígenes, recomendándose el uso híbrido de ambos:
+                	\begin{itemize}
+                		\item \textbf{Subestaciones eléctricas} mediante las cuales se puede traer energía del exterior.
+                        \item \textbf{Generadores} propios del centro, que serán un recurso mas económico como complemento, pero mas caro en caso de ser la única fuente proveedora. 
+                	\end{itemize}
+                    
+                  \item \textbf{Servidores de datos:} Son los elementos que gestionan la carga útil del centro. Están compuestos por los elementos típicos de una arquitectura Von Neumann: procesador, memoria principal y almacenamiento. Estos son usados con mecanismos de partición de los recursos para crear clusters que puedan ser usados individualmente.
+                  
+                  \item \textbf{Sistema de refrigeración:} Como será explicado mas adelante, la gran cantidad de calor que liberan los recursos electrónicos convierte en necesario el uso de sistemas que mitiguen dicha energía.
+            \end{enumerate}
+            
+   \newpage
+   
    \subsection{Consumo por elemento}
 			\paragraph{}
+            De los elementos de un centro de datos que se han presentado a un nivel de abstracción elevado, los proveedores de energía son los únicos que no son útiles en el estudio del consumo energético del recinto ya que ellos de por sí no tienen un consumo asociado a su uso.
+            
+            \paragraph{}
+            Los servidores de datos, sin embargo, son los componentes del centro que más energía consumen y merecen por ello un análisis detallado sobre el gasto que acarrean: \cite{datacenters:consumo}
+            
+            \paragraph{}
+            Para ello es fundamental, en primer lugar, la cuantificación de la potencia que utilizan las granjas de servidores de los centros de datos. Como guía, se estima
 
   \section{Impacto medioambiental}
 	\label{sec:impacto}
@@ -88,13 +118,35 @@
 
     \subsection{Gasto energético}
 	  	\paragraph{}
-
+		Los centros de computación siempre han consumido grandes cantidades de energía, al principio este gasto no se tenía demasiado en cuenta pero en los últimos años el consumo energético ha tomado gran importancia, de tal forma que muchas empresas han destinado gran cantidad de recursos a reducir este consumo de una forma u otra. A continuación se podrá observar a qué se destina la energía en un centro de computación. 
+        
+        \begin{figure}[htpb!]
+				\begin{center}
+					\includegraphics[width=0.75\textwidth]{tech-consumo}
+					\caption{Consumo de energía.\cite{technoreeze: impacto}}
+					\label{image:tech-consumo.PNG}
+				\end{center}
+		\end{figure}
+            
+        \begin{itemize}
+        \item Iluminación: El sistema de iluminación consume aproximadamente un 3\% de la energía total del centro, cabe destacar que aproximadamente un cuarto de la energía destinada a iluminación está reservada para la iluminación de emergencia del centro.
+        \item Suministro ininterrumpido: Un 10\% de la energía total se reserva para proveer un suministro ininterrumpido de la energía. Esto conlleva que aunque el flujo de energía hacia el resto de sistemas sea constante, hay que preveer una actuación de emergencia en el caso de que el sistema energético principal falle, de tal forma que este sistema de energía ininterrumpido abastecería la energía suficiente a los equipos para evitar que estos pudieran recibir daño alguno
+        \item Aire acondicionado: un 12\% de la energía se destina al aire acondicionado, es recomendable que un centro de procesamiento tenga una temperatura comprendida entre los 81 y los 21 grados centígrados, y que la humedad relativa esté comprendida entre el 45\% y el 65\%.
+        \item Refrigeración: La refrigeración de los equipos es crucial para su buen funcionamiento, hay que tener en cuenta que estos equipos están funcionando de forma ininterrumpida, por tanto es inevitable su calentamiento. Es muy importante una buena refrigeración y el 25\% de la energía suele destinarse a ella.
+        \item Equipamiento: El 50\% restante de la energía se utiliza para abastecer todo el sistema informático y electrónico, para que todos los equipos funcionen correctamente y tengan la energía necesaria para trabajar.
+        \end{itemize}
+        
 	  \subsection{Impacto hidráulico}
 	  	\paragraph{}
-
+		El consumo de agua es uno de los grandes problemas de los centros de datos, según investigadores del \textit{Imperial College} de Londres se pueden estar consumiendo hasta unos 200 litros de agua en la descarga de un gigabyte de datos. Son cifras preocupantes ya que en Europa se consumen unos 2GB al mes por persona y en Estados Unidos la cifra asciende a unos 4GB. 
+        
+        \paragraph{}
+        Este cálculo se realiza teniendo en cuenta el consumo hidráulico que precisa un centro de datos para refrigerar correctamente todo su equipamiento, así como la energía necesaria para funcionar. De tal forma que los centros de datos son unos grandes consumidores de agua, problema que ha llevado a las empresas a tratar de proporcionar ciertas soluciones, por ejemplo Microsoft ya tiene prototipos para tratar de construir un centro de computación bajo el mar, de tal forma que obtendría una refrigeración natural aunque tal vez provoque otros problemas en el entorno marino, que se mencionarán más adelante, pero el problema de la refrigeración estaría solucionado.
+        
 	  \subsection{Emisiones de dióxido carbono}
 	  	\paragraph{}
-
+		
+        
 	  \subsection{Impacto sobre el suelo terrestre}
 	  	\paragraph{}
 
@@ -199,6 +251,11 @@
 %----------------------------------------------------------------------------------------
 	\clearpage
   \begin{thebibliography}{9}
+  	\bibitem{google:dc-schema}
+    	Google: How we do it \url{http://www.google.com/about/datacenters/efficiency/internal/}
+        
+    \bibitem{datacenters:consumo}
+    	Datacenters: Data Center Power Costs and Requirements \url{https://www.datacenters.com/news/infrastructure/135-data-center-power-costs-and-requirements}
 
     \bibitem{energy-star:guide}
 		Enegy Star: 12 Ways to Save Energy in Data Centers and Server Rooms. \newline \url{https://www.energystar.gov/products/low_carbon_it_campaign/12_ways_save_energy_data_center}
@@ -262,6 +319,20 @@
 		Wikipedia: Escalabilidad \newline
 		\url{https://es.wikipedia.org/wiki/Escalabilidad}
 
+		\bibitem{technoreeze: impacto}
+		Technoreeze: Uso energético de un centro de datos \newline
+		\url{http://www.technoreeze.com/es/2011/07/01/datacenters-sostenibles-energia-diseno-e-impacto-ambiental/}
+        
+        \bibitem{inf-tek: dist-eng}
+        inf-tek: distribución energética \newline
+        \url{http://inf-tek.blogspot.com.es/2010/10/52-aspectos-electricos-del-centro-de.html}
+        
+        \bibitem{bbc: g-hidraulico}
+        bbc: gasto hidráulico \newline
+        \url{http://www.bbc.com/mundo/noticias-37506750}
+        
+        
+        
 	\end{thebibliography}
 
 \end{document}
