@@ -1,4 +1,4 @@
-\documentclass[10pt]{article}
+\documentclass[12pt]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
@@ -19,7 +19,7 @@
 \pagestyle{fancy} % All pages have headers and footers
 \fancyhead{} % Blank out the default header
 \fancyfoot{} % Blank out the default footer
-\fancyhead[C]{ \today \ $\bullet$ PyS $\bullet$ Consumo Energético de los Centros de Computación } % Custom header text
+\fancyhead[C]{ \today \ $\bullet$ PyS $\bullet$ Consumo Energético de los Centros de Datos } % Custom header text
 \fancyfoot[RO] {\thepage}
 
 
@@ -36,7 +36,7 @@
           \vspace{1cm}
           {\scshape\Large Profesión y Sociedad.\par}
           \vspace{1.5cm}
-          {\huge\bfseries Consumo Energético de los Centros de Computación \par}
+          {\huge\bfseries Consumo Energético de los Centros de Datos \par}
           \vspace{2cm}
           {\large
           \textsc{Amigo Alonso, Alberto}\\[2mm] % Your name
@@ -67,6 +67,16 @@
   \section{Introducción}
 	\label{sec:introducion}
     \paragraph{}
+    Desde el inicio de la era de la información, los sistemas computacionales han evolucionado a un ritmo vertiginoso. Si bien el salto de los sistemas de válvulas a la electrónica digital (motivada por la invención del transistor) supuso un gran avance para la computación, la explosión de esta ha sido la que ha marcado el camino en la era tecnológica para el futuro. 
+    
+    \paragraph{}
+    A pesar del enorme avance de estos años, el uso de todos los recursos disponibles por parte de las aplicaciones científicas ha creado una constante necesidad de mejorar las capacidades de los computadores. Es por ello que, tras casi alcanzar la máxima miniaturización de los transistores, se requiere de la explotación del paralelismo de varias máquinas para proseguir con la aceleración de los computadores.
+    
+    \paragraph{}
+    Pero esta creciente potencia de los centros de procesamiento ha generado otros problemas de índole social, medioambiental y de consumo. El gran número de componentes electrónicos que se unen genera un consumo energético muy elevado y por tanto afecta de diversas formas a la organización y a la sociedad.
+    
+    \paragraph{}
+    En este trabajo, se presenta un análisis del consumo de los centros de datos en términos de cuantía de consumo y de rendimiento energético, problema que es bien conocido en la actualidad. A continuación se detalla el posible impacto medioambiental que puede generar un centro de datos de última generación, seguido de un estudio de posibles soluciones asociadas a estos dos grandes inconvenientes.
 
 
   \section{Análisis sobre el consumo}
@@ -97,18 +107,45 @@
                   
                   \item \textbf{Sistema de refrigeración:} Como será explicado mas adelante, la gran cantidad de calor que liberan los recursos electrónicos convierte en necesario el uso de sistemas que mitiguen dicha energía.
             \end{enumerate}
-            
-   \newpage
-   
+               
    \subsection{Consumo por elemento}
 			\paragraph{}
             De los elementos de un centro de datos que se han presentado a un nivel de abstracción elevado, los proveedores de energía son los únicos que no son útiles en el estudio del consumo energético del recinto ya que ellos de por sí no tienen un consumo asociado a su uso.
             
             \paragraph{}
-            Los servidores de datos, sin embargo, son los componentes del centro que más energía consumen y merecen por ello un análisis detallado sobre el gasto que acarrean: \cite{datacenters:consumo}
+            Los servidores de datos, sin embargo, son los componentes del centro que más energía consumen y merecen por ello un análisis detallado sobre el gasto que acarrean. A pesar de que los dueños de los centros de computación no aportan información sobre el coste de estos, se puede realizar una estimación de él basada en los siguientes promedios: \cite{datacenters:consumo}
             
             \paragraph{}
-            Para ello es fundamental, en primer lugar, la cuantificación de la potencia que utilizan las granjas de servidores de los centros de datos. Como guía, se estima
+            Para ello es fundamental, en primer lugar, la cuantificación de la potencia que utilizan las granjas de servidores de los centros de datos. Como guía, se estima que un único servidor necesita entre 200 y 450 Watios por hora que, multiplicado por 720 horas mensuales (usando la media aritmética), representa un consumo total de 234 kWh por servidor.
+            
+            \paragraph{}
+            En segundo lugar, atendiendo a las estadísticas de coste en cents por kWh que ofrece la \textit{Administración de Información Energética de EEUU} \cite{eia:consumo}, se puede estimar que en un entorno industrial en Octubre de 2016 el kWh tenía un precio de 6.72 cents. Esto implica que, basándonos en los promedios oficiales de consumo y precio, un único servidor de un centro de datos costaría 15.7 dólares americanos.
+            
+            \paragraph{}
+            Es evidente, que el coste final en consumo eléctrico vendrá definido en total por el número de servidores de los que el centro disponga. Como estos pueden ser muy variables dependiendo de las compañías y el propósito, los cálculos de estimación finales serán realizados tomando en cuenta 50000 servidores como sugieren John Hennessy y David Patterson  \cite{hp:com-arch}. Por lo tanto, en caso promedio el consumo de una granja de servidores costará 785.000 dólares americanos al mes.
+            
+            \paragraph{}
+            También el sistema de refrigeración y los demás componentes con menor relevancia en el sistema de tratamiento de datos, aunque no por ello menos importantes, consumen gran cantidad de energía. A pesar de que no existe información disponible acerca del consumo de los refrigeradores diseñados con tecnología específica para computadores, se ha realizado una estimación con consumos de refrigeradores convencionales \cite{wikipedia:consumo}. Según estos datos, el coste asociado a la refrigeración de un centro con las mismas características que el anterior sería de 600.000 \$ mensuales.
+            
+       \subsection{Medida de la eficiencia}
+       		\paragraph{}
+            Una medida utilizada muy ampliamente para medir la eficiencia de los centros de datos es el \textit{power utilization effectiveness (PUE)}:
+            
+            \begin{displaymath}
+            	PUE = \frac{Consumo \quad total}{Consumo \quad ajeno\quad a \quad servidores}
+            \end{displaymath}
+            
+           	\begin{figure}[htpb!]
+				\begin{center}
+					\includegraphics[width=0.75\textwidth]{pue}
+					\caption{Distribución de PUE's en diferentes centros}
+					\label{image:pue}
+				\end{center}
+			\end{figure}
+            
+            Esta métrica debe estar lo más próxima a 1 para indicar que el centro de datos posee una buena eficiencia. Un valor elevado implica que gran parte de la energía consumida por el centro no está siendo empleada en los servidores, sino en componentes como la refrigeración y por lo tanto no está siendo aprovechada como carga útil.
+            
+            \paragraph{}
 
   \section{Impacto medioambiental}
 	\label{sec:impacto}
@@ -143,15 +180,53 @@
         \paragraph{}
         Este cálculo se realiza teniendo en cuenta el consumo hidráulico que precisa un centro de datos para refrigerar correctamente todo su equipamiento, así como la energía necesaria para funcionar. De tal forma que los centros de datos son unos grandes consumidores de agua, problema que ha llevado a las empresas a tratar de proporcionar ciertas soluciones, por ejemplo Microsoft ya tiene prototipos para tratar de construir un centro de computación bajo el mar, de tal forma que obtendría una refrigeración natural aunque tal vez provoque otros problemas en el entorno marino, que se mencionarán más adelante, pero el problema de la refrigeración estaría solucionado.
         
-	  \subsection{Emisiones de dióxido carbono}
-	  	\paragraph{}
-		
+	  \subsection{Contaminación}
+        
+        \subsubsection{Emisiones de dióxido de carbono}
+			\paragraph{}
+       		 Las computadoras emiten 54 millones de toneladas al año de dióxido de carbono. Un equivalente a sacar de circulación 11 millones de automóviles al año \cite{J.rocha: i-medioAmbiente}.
+        
+        	\paragraph{}
+        	La razón de que las computadoras consuman tanto es el derroche de energía. Un ordenador promedio derrocha casi la mitad de energía que consume, y un servidor un tercio de la misma, lo cual hace que el coste energético sea muy grande y las emisiones por dióxido de carbono aumenten. En el caso de los centros de computación las empresas buscan soluciones como centros abastecidos por energía eólica, por ejemplo.
+            
+        \subsubsection{Desechos electrónicos}
+        	\paragraph{}
+            Ningún aparato electrónico presenta riesgo de contaminación por sí solo, al menos durante su vida útil. El problema radica en el momento en que estos aparatos se desechan. Si tenemos en cuenta la cantidad de aparatos electrónicos que debe de presentar un centro de computación se puede afirmar que la tasa de fallo de al menos uno de los equipos es bastante considerable, una vez repuesto el equipo que ocasionaba el fallo, hay que tener en cuenta que sucede con el otro equipo. 
+            \paragraph{}
+            Los equipos desechados si no se tratan de la forma correcta son un problema muy grave contra el medio ambiente que no se debería pasar por alto. En el caso de que se desechen de forma incorrecta, tirándolos a basuras no habilitadas para ello pueden ocasionar graves problemas. A continuación se puede ver el impacto medioambiental y humano que producen los aparatos electrónicos que no se tratan correctamente.
+            
+           \begin{figure}[htpb!]
+				\begin{center}
+					\includegraphics[width=0.9\textwidth]{desechoE}
+					\caption{Impacto de los desechos electrónicos.\cite{J.rocha: i-medioAmbiente}}
+					\label{image:desechoE.png}
+				\end{center}
+		\end{figure} 
+        
+        
         
 	  \subsection{Impacto sobre el suelo terrestre}
 	  	\paragraph{}
-
+		Como se ha mencionado anteriormente el desprendimiento de calor de un centro de computación es considerablemente alto. Esto puede conllevar a una afección a la temperatura normal que debería tener el suelo donde están ubicados estos centros de computación.
+        
+        \paragraph{}
+        En la actualidad el consumo de energía, la atracción por las \textit{GreenIT}, y el ahorro económico hace que centros de computación que lleven varios años operativos ya no sean tan rentables o tan óptimos como cabría esperar y se desmantelan. El problema se presenta cuando se ha aumentado la temperatura del suelo de forma considerable, lo cual puede ocasionar que durante un período de tiempo esa zona puede desarrollar desertificación hasta que los acondicionantes del entorno devuelvan el terreno a su temperatura normal, lo cual puede suceder pasadas unas pocas décadas.
+        
+        \paragraph{}
+        Por otra parte, la deslocalización de muchos centros de datos hacia zonas más frías del globo terrestre provocará en el suelo helado un posible deshielo en la zona afectando al hábitat natural que allí se tenga.
+        
 	  \subsection{Fauna y flora del entorno}
 	  	\paragraph{}
+        Resulta obvio que la introducción de una infraestructura en un medio en el que no debería estar por causas naturales, provoca una alteración del hábitat en el que se pueden encontrar animales y plantas.
+        
+        \paragraph{}
+        El habituar una zona para la construcción de las infraestructuras de los centros de datos conlleva arrasar una zona relativamente pequeña donde existirán plantas y animales que se verían seriamente afectados. Por otra parte y como se ha mencionado en la sección acerca del impacto sobre el suelo, la desertificación de ciertas zonas impediría que la flora de la zona no pudiera recuperarse en unas décadas. 
+        
+        \paragraph{}
+        En el caso de que no se produzca una desmantelación de los centros de datos y se produzca un abandono de las instalaciones las consecuencias pueden ser graves. Ya se ha mencionado los problemas que ocasiona el no tratar bien los desechos electrónicos, esto afectaría gravemente a la fauna y la flora local, incluso pudiendo llegar a contaminar el agua cercana.
+        
+        \paragraph{}
+        A la hora de analizar las opciones futuras, ya que la insercción de un centro de computación bajo el mar cobra suficiente fuerza como para que termine siendo una realidad, hay que tener en cuenta todo lo mencionado anteriormente. Un aumento de la temperatura puede tener mucho más impacto en el agua que en la superficie terrestre, ya que el aumento de unos pocos grados de una masa de agua puede hacer imposible la vida de ciertas especies submarinas, tanto animales como vegetales.
 
 
 
@@ -172,7 +247,7 @@
 		\subsection{Virtualización}
 
 			\paragraph{}
-			Uno de los puntos en común en todas las guías citadas es su enfasis en la \textbf{virtualización}. Esta técnica se refiere a la capacidad de abstraer la visión de un conjunto de servidores de manera que desde el exterior sean vistos como una única máquina. A pesar del coste computacional destinado a dicho fin, con esto se consiguen reduciones en el consumo energético debido al aumento del uso de las máquinas.
+			Uno de los puntos en común en todas las guías citadas es su énfasis en la \textbf{virtualización}. Esta técnica se refiere a la capacidad de abstraer la visión de un conjunto de servidores de manera que desde el exterior sean vistos como una única máquina. A pesar del coste computacional destinado a dicho fin, con esto se consiguen reduciones en el consumo energético debido al aumento del uso de las máquinas.
 
 			\paragraph{}
 			Típicamente se asignaba un servidor físico por aplicación o sistema, con lo cuál, mientras no se utilizara dicho sistema, el servidor permanecía inactivo consumiendo energía, por lo que la productividad energética de los mismos no era la óptima. Con las estrategias actuales de virtualización se pretende tratar todas las aplicaciones que se ejecutan en el centro de datos como procesos de una única máquina virtualizada. Esto se ilustra gráficamente en la figura \ref{image:virtualization}. Con lo cuál, se consigue que los servidores aprovechen mucho más sus capacidades de cómputo, ya que pueden realizar operaciones relativas a cualquiera de las aplicaciones. Por tanto, la complejidad que gana el centro de datos debido a esta opción es altamente recompensada con la reducción del consumo energético.
@@ -244,18 +319,30 @@
 
   \section{Conclusiones}
 	\label{sec:conclusiones}
+    \paragraph{}
+    Es innegable que los centros de datos son elementos fundamentales en la nueva forma de utilizar los recursos informáticos, ya que poseen la capacidad de cómputo que individualmente es difícil de conseguir. Por ello, no cabe la opción de relegarlos hasta encontrar una nueva tecnología capaz de conseguir los mismos hitos, sino que después de este estudio se asume que hay alternativas para transformar los fallos de los actuales centros de datos.
 
   	\paragraph{}
+    Aún así, también se deduce de estudio que al ser soluciones técnicas a problemas complejos que requieren un proceso de ingeniería, los resultados no pueden ser inmediatos y se deberá esperar hasta que la industria encuentra la solución óptima a los problemas expuestos.
 %----------------------------------------------------------------------------------------
 %	Bibliographic references
 %----------------------------------------------------------------------------------------
 	\clearpage
   \begin{thebibliography}{9}
   	\bibitem{google:dc-schema}
-    	Google: How we do it \url{http://www.google.com/about/datacenters/efficiency/internal/}
+    	Google: How we do it. \url{http://www.google.com/about/datacenters/efficiency/internal/}
         
     \bibitem{datacenters:consumo}
-    	Datacenters: Data Center Power Costs and Requirements \url{https://www.datacenters.com/news/infrastructure/135-data-center-power-costs-and-requirements}
+    	Datacenters: Data Center Power Costs and Requirements. \url{https://www.datacenters.com/news/infrastructure/135-data-center-power-costs-and-requirements}   
+        
+	\bibitem{eia:consumo}
+    	EIA:  Average Price of Electricity to Ultimate Customers by End-Use Sector. \url{http://www.eia.gov/electricity/monthly/epm_table_grapher.cfm?t=epmt_5_6_a}
+        
+    \bibitem{hp:com-arch}
+    	Hennessy y Patterson: Computer architecture: a quantitative approach, Capítulo 6: Warehouse-Scale Computers.
+        
+    \bibitem{wikipedia:consumo}
+    	Wikipedia: Consumo de algunos electrodomésticos \url{https://es.wikipedia.org/wiki/Anexo:Consumo_de_algunos_electrodomésticos}
 
     \bibitem{energy-star:guide}
 		Enegy Star: 12 Ways to Save Energy in Data Centers and Server Rooms. \newline \url{https://www.energystar.gov/products/low_carbon_it_campaign/12_ways_save_energy_data_center}
@@ -330,7 +417,9 @@
         \bibitem{bbc: g-hidraulico}
         bbc: gasto hidráulico \newline
         \url{http://www.bbc.com/mundo/noticias-37506750}
-        
+  
+        \bibitem{J.rocha: i-medioAmbiente} \textsc{Rocha, J.}
+        \textit{Impacto de la informática en el medio ambiente}
         
         
 	\end{thebibliography}
